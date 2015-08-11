@@ -1,0 +1,205 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Whitesquare</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" id="colorcss">
+		<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald:400,300">
+		<script type="text/javascript" src="jsLib/AjaxRequest.js"></script>
+		<script type="text/javascript" src="jsLib/DBOperator.js"></script>
+		<script type="text/javascript" src="jsLib/Forms.js"></script>
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body onload="start();">
+		<div id="loader" style="display: none"></div>
+		<div id="wrapper">
+			<header>
+				Цветовая схема: <button class="colorsquare" style="background-color: #29c5e6" onclick="applyTheme('');"></button><button class="colorsquare" style="background-color: #E67300" onclick="applyTheme('orange');"></button>
+			</header>
+			<nav>
+				<ul class="top-menu" id="servicesUl">
+					<li>API SGP</li>
+					<li class="active">API FILIAL</li>
+					<li>API MONEY</li>
+					<li>API DOCUMENT</li>
+				</ul>
+			</nav>
+			<div id="heading">
+				<h1 id="mainHeader">API FILIAL</h1>
+			</div>
+			<div id="searchDiv">
+			<aside>
+				<h2>SERVICE INFO</h2>
+				<p id="serviceInfo">
+					<b>IP: </b> <i>filial.barstrade.ru</i>
+					<br>
+					<b>AJAX path: </b> <i>phpLib/AjaxRequest.php</i>
+					<br>
+					<b>FTP: </b> <i>ftp.barstrade.ru</i>
+				</p>
+				<br>
+				<button style="margin-bottom: 15px" onclick="openNewFunctionPage();"><img src="images/plus.png"> ADD NEW FUNCTION</button>
+				<br>
+				<form name="search" action="#" method="get">
+					<input type="text" name="q" placeholder="Search" id="searchInput" oninput="makeFunctionSearch();"><button type="submit">GO</button>
+					<p id="searchTechnology" onclick="makeFunctionSearch();"></p>
+				</form>
+				<br>
+				<nav>
+					<ul class="aside-menu" id="functionsUl">
+						<li class="active">LOREM IPSUM</li>
+						<li>DONEC TINCIDUNT LAOREET</li>
+        				<li>VESTIBULUM ELIT</li>
+        				<li>ETIAM PHARETRA</li>
+        				<li>PHASELLUS PLACERAT</li>
+        				<li>CRAS ET NISI VITAE ODIO</li>
+					</ul>
+				</nav>	
+			</aside>
+			<section id="viewDiv">
+				<div class="view-stage">
+						<h2>Описание функции</h2>
+						<div class="view-stage-content">
+							<p>
+								<legend>Название функции:</legend>
+								<input type="text">
+								<legend>Описание:</legend>
+								<textarea rows="5"></textarea>
+								<legend>Результат:</legend>
+								<textarea rows="3"></textarea>
+							</p>
+						</div>
+					</div>
+					<div class="view-stage">
+						<h2>Переменные функции</h2>
+						<div class="view-stage-content">
+							<br>
+							<table class="vars-table">
+								<colgroup>
+       							<col span="1" style="width: 15%;">
+       							<col span="1" style="width: 15%;">
+       							<col span="1" style="width: 70%;">
+    							</colgroup>
+								<thead>
+									<th>Название</th>
+									<th>Тип</th>
+									<th>Описание</th>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							<br>
+						</div>
+					</div>
+					<div class="view-stage">
+						<h2>Исключения функции</h2>
+						<div class="view-stage-content">
+							<br>
+							<table class="vars-table">
+								<colgroup>
+       							<col span="1" style="width: 30%;">
+       							<col span="1" style="width: 70%;">
+    							</colgroup>
+								<thead>
+									<th>Название</th>
+									<th>Описание</th>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							<br>
+						</div>
+					</div>
+					<div class="view-stage">
+						<h2>Связанное API</h2>
+						<div class="view-stage-content">
+							<br>
+							<ul class="aside-menu"></ul>
+						</div>
+					</div>
+			</section>
+			</div>
+			<div id="addDiv" class="hidden">
+				<section id="stagerDiv">
+					<div id="stageOneDiv" class="add-stage">
+						<h2>Описание функции</h2>
+						<div class="add-stage-content">
+							<p>
+								<label>Технология:</label>
+								<span id="addFunctionTech"></span>
+								<legend>Название функции:</legend>
+								<input type="text" placeholder="API NAME">
+								<legend>Описание:</legend>
+								<textarea rows="5"></textarea>
+								<legend>Результат:</legend>
+								<textarea rows="3"></textarea>
+							</p>
+						</div>
+					</div>
+					<div id="stageTwoDiv" class="add-stage">
+						<h2>Переменные функции</h2>
+						<div class="add-stage-content">
+							<br>
+							<table class="vars-table" id="varsTable">
+								<colgroup>
+       							<col span="1" style="width: 15%;">
+       							<col span="1" style="width: 15%;">
+       							<col span="1" style="width: 70%;">
+    							</colgroup>
+								<thead>
+									<th>Название</th>
+									<th>Тип</th>
+									<th>Описание</th>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							<br>
+							<form style="float: right">
+								<button type="button" onclick="usefulActions.addVariable();">ADD VARIABLE</button>
+							</form>
+						</div>
+					</div>
+					<div id="stageThreeDiv" class="add-stage">
+						<h2>Исключения функции</h2>
+						<div class="add-stage-content">
+							<br>
+							<table class="vars-table" id="exTable">
+								<colgroup>
+       							<col span="1" style="width: 30%;">
+       							<col span="1" style="width: 70%;">
+    							</colgroup>
+								<thead>
+									<th>Название</th>
+									<th>Описание</th>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							<br>
+							<form style="float: right">
+								<button type="button" onclick="usefulActions.addException();">ADD EXCEPTION</button>
+							</form>
+						</div>
+					</div>
+					<div id="stageFourDiv" class="add-stage">
+						<h2>Связанное API</h2>
+						<div class="add-stage-content">
+							<br>
+							<label>Сервис:</label>
+							<select id="addFunctionLinkService" onchange="usefulActions.updateLinksAPI();"></select>
+							<label>API:</label>
+							<select id="addFunctionLinkAPI"></select>
+							<button type="button" onclick="usefulActions.addLink();">ADD</button>
+							<br>
+							<ul id="linksUl" class="aside-menu"></ul>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</body>
+</html>
